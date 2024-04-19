@@ -3,7 +3,7 @@ Link do requistos :https://docs.google.com/document/d/1sTGwnvWxwyaQNZCEVPWHTyufJ
 
 
 
-Link do modelo dos casos de teste: https://docs.google.com/document/d/1kuuub4MZRHgf4whDPAGhMvu4oOFeQ0NfqA1UikRMqyM/edit                                                         
+Link da Definição das Atividades de Teste a serem Empregadas: https://docs.google.com/document/d/1kuuub4MZRHgf4whDPAGhMvu4oOFeQ0NfqA1UikRMqyM/edit                                                         
 
 
 
