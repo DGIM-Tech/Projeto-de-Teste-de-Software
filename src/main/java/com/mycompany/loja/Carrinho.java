@@ -38,7 +38,7 @@ public class Carrinho {
 
         System.out.print("Digite o código do produto que deseja comprar: ");
         int codigoCompra = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer
+        scanner.nextLine(); 
 
         Produto produtoCompra = gs.buscarProdutoPorCodigo(codigoCompra);
 

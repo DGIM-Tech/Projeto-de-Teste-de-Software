@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 package com.mycompany.loja;
-import java.util.Scanner; 
+
+import java.util.Scanner;
 import sun.jvm.hotspot.code.Location;
 
 /**
@@ -11,9 +12,10 @@ import sun.jvm.hotspot.code.Location;
  * @author iandr
  */
 public class Loja {
+
     public static void main(String[] args) {
-  Scanner scanner = new Scanner(System.in);
-      
+        Scanner scanner = new Scanner(System.in);
+
         int opcao = 0;
         int op1;
         int opcaoCliente = 0;
@@ -44,7 +46,7 @@ public class Loja {
                         System.out.print("Digite seu CPF: ");
                         String cpfCliente = scanner.nextLine();
                         if (loginCliente.trim().isEmpty() || senhaCliente.trim().length() < 8) {
-                            System.out.println("Erro: O login não pode estar em branco e a senha deve ter pelo menos 8 caracteres.");
+                            System.out.println("Erro: O cadastro de login ou cpf  não pode estar em branco e a senha deve ter pelo menos 8 caracteres.");
                         } else {
                             cliente = new Cliente(loginCliente, senhaCliente, cpfCliente);
                             gc.adicionarCliente(cliente);
@@ -87,27 +89,27 @@ public class Loja {
                                             System.out.print("Digite o código do produto para busca: ");
                                             int codigoProdutoBusca = scanner.nextInt();
                                             gs.buscarProduto(codigoProdutoBusca);
-                                           break;
+                                            break;
                                         case 3:
-                                        System.out.print("Digite o código do produto que deseja adicionar ao carrinho: ");
+                                            System.out.print("Digite o código do produto que deseja adicionar ao carrinho: ");
                                             int codigoProduto = scanner.nextInt();
-                                                scanner.nextLine(); // Limpar o buffer
+                                            scanner.nextLine(); // Limpar o buffer
 
-                                                        // Chama o método buscarProduto para obter os detalhes do produto
-                                                    Produto produtoSelecionado = gs.buscarProdutoPorCodigo(codigoProduto);
+                                            // Chama o método buscarProduto para obter os detalhes do produto
+                                            Produto produtoSelecionado = gs.buscarProdutoPorCodigo(codigoProduto);
 
-                                                        if (produtoSelecionado != null) {
-                                            // Verifica se o produto já está no carrinho
-                                                 if (carrinho.contemItemComCodigo(codigoProduto)) {
-                                                      System.out.println("Este produto já foi adicionado ao carrinho.");
-                                             } else {
-                                             carrinho.adicionarItem(produtoSelecionado);
-                                              System.out.println("Produto adicionado ao carrinho com sucesso.");
-                                 }
-                                                        } else {
-                                             System.out.println("Produto não encontrado.");
+                                            if (produtoSelecionado != null) {
+                                                // Verifica se o produto já está no carrinho
+                                                if (carrinho.contemItemComCodigo(codigoProduto)) {
+                                                    System.out.println("Este produto já foi adicionado ao carrinho.");
+                                                } else {
+                                                    carrinho.adicionarItem(produtoSelecionado);
+                                                    System.out.println("Produto adicionado ao carrinho com sucesso.");
+                                                }
+                                            } else {
+                                                System.out.println("Produto não encontrado.");
                                             }
-                                                         break;
+                                            break;
                                         case 4:
                                             carrinho.comprar(gs);
                                             break;
@@ -148,30 +150,34 @@ public class Loja {
                                                     case 1:
                                                         System.out.print("Digite o nome do produto: ");
                                                         String nome = scanner.next();
-
+                                                      
                                                         System.out.print("Digite o preço do produto: ");
                                                         double preco = scanner.nextDouble();
-                                                      
+                                                        scanner.nextLine(); // Limpeza do buffer
 
                                                         System.out.print("Digite a descrição do produto: ");
                                                         String descricao = scanner.nextLine();
-                                                        scanner.nextLine();
+
                                                         System.out.print("Digite o código da categoria para adicionar o produto a essa categoria: ");
                                                         int codigoCategoriaProduto = scanner.nextInt();
-                                                        scanner.nextLine(); // Limpeza do buffer
+                                                        scanner.nextLine(); 
 
                                                         Categoria categoriaProduto = gs.encontrarCategoriaPorCodigo(codigoCategoriaProduto);
 
-                                                        if (categoriaProduto != null) {
-                                                            System.out.print("Digite o código do produto: ");
-                                                            int codigoProduto = scanner.nextInt();
-                                                            scanner.nextLine(); // Limpeza do buffer
+                                                        System.out.print("Digite o código do produto: ");
+                                                        int codigoProduto = scanner.nextInt();
+                                                        scanner.nextLine(); 
 
-                                                            produto = new Produto(nome, preco, descricao, codigoProduto, categoriaProduto);
-                                                            gs.adicionarProduto(produto);
-                                                            System.out.println("Produto adicionado com sucesso à categoria " + categoriaProduto.getNomeCategoria());
+                                                        if (nome.trim().isEmpty() || descricao.trim().isEmpty()) {
+                                                            System.out.println("Erro: Nome do produto ou Descrição do produto não pode ter campos em branco");
                                                         } else {
-                                                            System.out.println("Categoria não encontrada. Produto não adicionado.");
+                                                            if (categoriaProduto != null) {
+                                                                produto = new Produto(nome, preco, descricao, codigoProduto, categoriaProduto);
+                                                                gs.adicionarProduto(produto);
+                                                                System.out.println("Produto adicionado com sucesso à categoria " + categoriaProduto.getNomeCategoria());
+                                                            } else {
+                                                                System.out.println("Categoria não encontrada. Produto não adicionado.");
+                                                            }
                                                         }
                                                         break;
                                                     case 2:
